@@ -1,11 +1,11 @@
 {
-  "github": {
-    "enabled": false
-  },
+  "github": { "enabled": false },
   "functions": {
     "api/chat.js": { "maxDuration": 59 }
   },
   "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*\\.(css|js|png|jpg|gif|ico|svg|webp))", "dest": "/$1" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
