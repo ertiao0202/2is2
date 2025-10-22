@@ -1,9 +1,9 @@
-/* ====== 进度条彻底修复：去掉 flex 拉伸 ====== */
+/* ====== 进度条与输入框同宽 ====== */
 .progress{
-  display:inline-block;    /* 关键：不再拉伸 */
-  width:480px;             /* 固定宽度 */
-  max-width:100%;          /* 手机端自适应 */
-  margin-bottom:1.5rem;
+  display:block;          /* 去掉 flex 拉伸 */
+  width:100%;             /* 跟 .input-area 同宽 */
+  max-width:840px;        /* 与 .wrapper 上限对齐 */
+  margin:0 auto 1.5rem;   /* 居中，保留上下间距 */
 }
 .progress__bar{
   height:4px;
@@ -17,7 +17,7 @@
   transition:width .25s;
 }
 
-/* ====== 其余样式保持不变 ====== */
+/* ====== 其余样式保持原样 ====== */
 :root{
   --bg:#ffffff;
   --text:#111827;
