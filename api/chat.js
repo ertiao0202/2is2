@@ -1,7 +1,4 @@
-// api/chat.js  (Edge Runtime + 本地 .env 兼容)
-import dotenv from 'dotenv';
-dotenv.config(); // 先读本地 .env（本地 dev 时生效）
-
+// api/chat.js  Edge Runtime 版（去掉 dotenv，直接用 Vercel 环境变量）
 export const config = { runtime: 'edge' };
 
 export default async function handler(req) {
@@ -9,7 +6,7 @@ export default async function handler(req) {
     return new Response('Method Not Allowed', { status: 405 });
   }
 
-  // 先读本地 .env，没有就回落到 Vercel 环境变量
+  // 直接读 Vercel 环境变量
   const apiKey = process.env.KIMI_API_KEY;
   if (!apiKey) {
     return new Response('Missing KIMI_API_KEY', { status: 500 });
@@ -18,7 +15,7 @@ export default async function handler(req) {
   try {
     const body = await req.json();
     const upstream = await fetch('https://api.moonshot.cn/v1/chat/completions', {
-      method : 'POST',
+      method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
